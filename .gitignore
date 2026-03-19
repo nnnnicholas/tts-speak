@@ -1,2 +1,9 @@
-tts-speak.env
+*.env
+!*.env.example
 .DS_Store
+*.wav
+*.mp3
+/tmp/
+*.pid
+.env*
+!.env.example
