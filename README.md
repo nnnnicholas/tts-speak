@@ -10,6 +10,14 @@ Supports [Cartesia](https://cartesia.ai) (cloud, best quality) and [Kokoro](http
 curl -fsSL https://raw.githubusercontent.com/nnnnicholas/tts-speak/main/install.sh | bash
 ```
 
+This will:
+- Clone the repo to `~/.local/share/tts-speak`
+- Symlink `tts-speak` to `~/.local/bin/`
+- Create a config file at `~/.config/tts-speak.env`
+- Install a macOS Quick Action for the right-click menu
+
+No sudo, no brew, no dependencies beyond what macOS ships with.
+
 Then add your Cartesia API key ([get one here](https://play.cartesia.ai)):
 
 ```bash
