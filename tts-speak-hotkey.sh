@@ -8,9 +8,9 @@ if pgrep -x afplay >/dev/null 2>&1; then
   exit 0
 fi
 
-# Copy selected text to clipboard
+# Try to copy selection, fall back to existing clipboard
 osascript -e 'tell application "System Events" to keystroke "c" using command down'
 sleep 0.3
 
-# Pipe clipboard to tts-speak
+# Pipe clipboard (either new selection or existing) to tts-speak
 pbpaste | "${HOME}/.local/bin/tts-speak"

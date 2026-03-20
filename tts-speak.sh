@@ -55,7 +55,6 @@ if kill_existing; then
   exit 0
 fi
 
-set -m
 echo $$ > "$PID_FILE"
 
 cleanup() {
