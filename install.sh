@@ -58,6 +58,7 @@ fi
 
 # Install Automator Quick Action (right-click menu)
 if [[ -d "$INSTALL_DIR/Speak with AI.workflow" ]]; then
+  mkdir -p "$SERVICES_DIR"
   rm -rf "$SERVICES_DIR/Speak with AI.workflow"
   cp -R "$INSTALL_DIR/Speak with AI.workflow" "$SERVICES_DIR/"
   echo "✓ Installed 'Speak with AI' Quick Action (right-click menu)"
@@ -68,6 +69,21 @@ if [[ -f "$INSTALL_DIR/tts-speak-hotkey.sh" ]]; then
   ln -sf "$INSTALL_DIR/tts-speak-hotkey.sh" "$BIN_DIR/tts-speak-hotkey"
   chmod +x "$INSTALL_DIR/tts-speak-hotkey.sh"
   echo "✓ Linked tts-speak-hotkey"
+fi
+
+# Build and install the optional menu bar status helper
+if [[ -f "$INSTALL_DIR/tts-speak-status.swift" ]]; then
+  if command -v swiftc >/dev/null 2>&1; then
+    rm -f "$BIN_DIR/tts-speak-status"
+    if swiftc "$INSTALL_DIR/tts-speak-status.swift" -o "$BIN_DIR/tts-speak-status"; then
+      chmod +x "$BIN_DIR/tts-speak-status"
+      echo "✓ Built optional tts-speak-status menu bar helper"
+    else
+      echo "⚠ Skipped optional menu bar helper: local Swift build failed."
+    fi
+  else
+    echo "ℹ Skipped optional menu bar helper: swiftc not found."
+  fi
 fi
 
 echo ""
